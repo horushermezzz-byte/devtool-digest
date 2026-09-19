@@ -39,8 +39,8 @@ buildExpired = false
   tocopen = false
 
   [params.homeInfoParams]
-    Title = "DevTool Digest"
-    Content = "Practical, no-fluff comparisons and guides for AI coding assistants, dev productivity tools, and self-hosted alternatives. We test the tools so you don't have to."
+    Title = "Tools, tested honestly."
+    Content = "Hands-on comparisons of AI coding assistants, developer tooling, and self-hosted alternatives to paid SaaS. We run the tools before we write about them — and we tell you when one isn't worth it."
 
   [params.assets]
     disableHLJS = false

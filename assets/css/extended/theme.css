@@ -1,0 +1,506 @@
+/* ==========================================================================
+   DevTool Digest — editorial theme layer over PaperMod
+   Surface: Decide/Learn (publication). Priority: long-form reading comfort.
+   Palette: warm paper/ink neutrals + deep teal accent (chosen, not default).
+   Type:    Fraunces (display) / Source Serif 4 (prose) / JetBrains Mono (code)
+   ========================================================================== */
+
+/* ---------- Tokens ---------- */
+:root {
+    --gap: 24px;
+    --content-gap: 22px;
+    --nav-width: 1100px;
+    --main-width: 680px;          /* ~68ch of Source Serif at 19px = comfortable measure */
+    --header-height: 64px;
+    --footer-height: 60px;
+    --radius: 6px;
+
+    /* Warm paper neutrals */
+    --theme: #faf8f5;             /* page */
+    --entry: #ffffff;             /* raised surface */
+    --primary: #1a1815;           /* ink */
+    --secondary: #6b6355;         /* muted ink */
+    --tertiary: #e4ded3;          /* hairlines on warm bg */
+    --content: #2c2823;           /* body prose */
+    --border: #e6e0d6;
+
+    --code-block-bg: #1e1c19;
+    --code-bg: #f2ede4;
+
+    /* Accent: deep teal — complements warm paper, reads as "editorial" not "SaaS" */
+    --accent: #0f6b62;
+    --accent-hover: #0c5750;
+    --accent-wash: rgba(15, 107, 98, 0.08);
+
+    --font-display: 'Fraunces', 'Iowan Old Style', Georgia, serif;
+    --font-prose: 'Source Serif 4', Charter, Georgia, serif;
+    --font-ui: 'Source Serif 4', Georgia, serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+    --theme: #14120f;
+    --entry: #1c1a16;
+    --primary: #f0ebe2;
+    --secondary: #9c9384;
+    --tertiary: #2e2a24;
+    --content: #d8d2c7;
+    --border: #2a2620;
+
+    --code-block-bg: #100f0d;
+    --code-bg: #24211c;
+
+    --accent: #5fc9bb;
+    --accent-hover: #86d9ce;
+    --accent-wash: rgba(95, 201, 187, 0.12);
+
+    color-scheme: dark;
+}
+
+/* PaperMod tints list pages with --code-bg; keep them on the page color instead. */
+.list { background: var(--theme); }
+[data-theme="dark"] .list { background: var(--theme); }
+
+/* ---------- Base ---------- */
+body {
+    font-family: var(--font-ui);
+    background: var(--theme);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+    background: var(--accent);
+    color: var(--theme);
+}
+
+/* Fine paper grain — barely perceptible, kills the flat-digital feel.
+   Pure CSS gradients, no image request. */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+    background-image:
+        radial-gradient(circle at 15% 12%, rgba(120, 100, 70, 0.035) 0, transparent 38%),
+        radial-gradient(circle at 85% 78%, rgba(15, 107, 98, 0.028) 0, transparent 42%);
+}
+[data-theme="dark"] body::before { opacity: 0.55; }
+.main, .header, .footer { position: relative; z-index: 1; }
+
+/* ---------- Header / masthead ---------- */
+.header {
+    border-bottom: 1px solid var(--border);
+    background: color-mix(in srgb, var(--theme) 88%, transparent);
+    backdrop-filter: saturate(140%) blur(8px);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+.nav {
+    max-width: calc(var(--nav-width) + var(--gap) * 2);
+    padding: 0 var(--gap);
+}
+
+.logo a {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 21px;
+    letter-spacing: -0.015em;
+    color: var(--primary);
+}
+
+/* Teal end-mark after the wordmark — small identity cue, not decoration. */
+.logo a::after {
+    content: "";
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-left: 7px;
+    vertical-align: 0.14em;
+    border-radius: 50%;
+    background: var(--accent);
+}
+
+#menu a {
+    font-family: var(--font-ui);
+    font-size: 16px;
+    color: var(--secondary);
+    padding: 6px 10px;
+    border-radius: var(--radius);
+    transition: color 0.15s ease, background 0.15s ease;
+}
+#menu a:hover { color: var(--primary); background: var(--accent-wash); }
+#menu .active {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    border-radius: 0;
+    margin-inline-start: 0;
+}
+
+/* ---------- Home masthead (replaces the centered hero) ---------- */
+.home-info .entry-content,
+.first-entry .entry-content {
+    font-family: var(--font-prose);
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--secondary);
+    margin: 14px 0 0;
+    max-width: 52ch;
+}
+
+.first-entry {
+    min-height: auto;
+    padding: 46px 0 34px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+}
+
+.first-entry .entry-header h1 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(40px, 7vw, 58px);
+    line-height: 1.04;
+    letter-spacing: -0.026em;
+    color: var(--primary);
+    margin: 0;
+}
+
+/* ---------- Article index: a publication list, not a card grid ---------- */
+.post-entry,
+.entry {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 26px 0;
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+    transition: none;
+}
+.post-entry:hover,
+.entry:hover {
+    transform: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+.post-entry .entry-header h2,
+.entry .entry-header h2 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 27px;
+    line-height: 1.22;
+    letter-spacing: -0.018em;
+    color: var(--primary);
+    transition: color 0.15s ease;
+}
+.post-entry:hover .entry-header h2 { color: var(--accent); }
+
+.entry-content {
+    font-family: var(--font-prose);
+    font-size: 17.5px;
+    line-height: 1.62;
+    color: var(--secondary);
+    margin-top: 9px;
+    -webkit-line-clamp: 3;
+    opacity: 1;
+}
+
+.entry-footer {
+    font-family: var(--font-ui);
+    font-size: 14.5px;
+    color: var(--secondary);
+    margin-top: 12px;
+    letter-spacing: 0.005em;
+}
+
+/* Reading-time as a quiet promise to the reader, set apart by a bullet. */
+.entry-footer .reading-time::before { content: "·"; margin: 0 7px; }
+
+/* ---------- Post page ---------- */
+.post-header { margin: 40px auto 26px; }
+
+.post-title {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: clamp(34px, 5.4vw, 46px);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    color: var(--primary);
+    text-wrap: balance;
+}
+
+.post-description {
+    font-family: var(--font-prose);
+    font-size: 19.5px;
+    line-height: 1.58;
+    color: var(--secondary);
+    margin-top: 14px;
+    font-style: normal;
+}
+
+.post-meta,
+.breadcrumbs {
+    font-family: var(--font-ui);
+    font-size: 15px;
+    color: var(--secondary);
+}
+
+/* Prose — the actual product. */
+.post-content {
+    font-family: var(--font-prose);
+    font-size: 19px;
+    line-height: 1.72;
+    color: var(--content);
+    text-wrap: pretty;
+}
+
+.post-content p { margin: 0 0 1.35em; }
+
+.post-content h2 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+    margin: 2.2em 0 0.55em;
+    padding-top: 0.6em;
+    border-top: 1px solid var(--border);
+    color: var(--primary);
+}
+
+.post-content h3 {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: -0.012em;
+    margin: 1.7em 0 0.45em;
+    color: var(--primary);
+}
+
+.post-content a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+    text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    box-shadow: none;
+    transition: text-decoration-color 0.15s ease, color 0.15s ease;
+}
+.post-content a:hover {
+    color: var(--accent-hover);
+    text-decoration-color: var(--accent-hover);
+}
+
+.post-content strong { font-weight: 600; color: var(--primary); }
+
+.post-content ul,
+.post-content ol { margin: 0 0 1.35em; padding-inline-start: 1.4em; }
+.post-content li { margin: 0.4em 0; }
+.post-content li::marker { color: var(--accent); }
+
+.post-content blockquote {
+    border-inline-start: 2px solid var(--accent);
+    background: var(--accent-wash);
+    padding: 0.85em 1.2em;
+    margin: 1.6em 0;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-style: normal;
+    color: var(--content);
+}
+
+.post-content hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.4em 0;
+}
+
+/* Tables read as data, not as decoration. */
+.post-content table {
+    font-family: var(--font-ui);
+    font-size: 16.5px;
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.6em 0;
+}
+.post-content table th {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    text-align: start;
+    color: var(--primary);
+    border-bottom: 2px solid var(--border);
+    padding: 10px 12px;
+    background: transparent;
+}
+.post-content table td {
+    border-bottom: 1px solid var(--border);
+    padding: 10px 12px;
+    color: var(--content);
+}
+.post-content table tr:hover td { background: var(--accent-wash); }
+
+/* Code */
+.post-content code,
+.post-content pre code {
+    font-family: var(--font-mono);
+    font-size: 0.87em;
+    font-variant-ligatures: none;
+}
+.post-content :not(pre) > code {
+    background: var(--code-bg);
+    color: var(--primary);
+    padding: 0.14em 0.4em;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+}
+.post-content pre {
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    border: 1px solid var(--border);
+    line-height: 1.6;
+}
+
+/* ---------- Table of contents ---------- */
+.toc {
+    font-family: var(--font-ui);
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin: 0 0 28px;
+    box-shadow: none;
+}
+.toc details summary {
+    font-weight: 600;
+    color: var(--primary);
+    cursor: pointer;
+}
+.toc .inner { font-size: 16px; }
+.toc a { color: var(--secondary); text-decoration: none; }
+.toc a:hover { color: var(--accent); }
+
+/* ---------- Tags ---------- */
+.post-tags a,
+.terms-tags a {
+    font-family: var(--font-ui);
+    font-size: 14.5px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--secondary);
+    padding: 4px 13px;
+    box-shadow: none;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.post-tags a:hover,
+.terms-tags a:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-wash);
+}
+
+/* ---------- Post nav ---------- */
+.paginav {
+    font-family: var(--font-ui);
+    border-radius: var(--radius);
+    background: transparent;
+    border: 1px solid var(--border);
+}
+.paginav a:hover .title { color: var(--accent); }
+.paginav .title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--primary);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    font-family: var(--font-ui);
+    font-size: 15px;
+    color: var(--secondary);
+    border-top: 1px solid var(--border);
+    margin-top: 48px;
+    padding: 26px var(--gap);
+}
+.footer a { color: var(--secondary); text-decoration: underline; text-underline-offset: 0.2em; }
+.footer a:hover { color: var(--accent); }
+
+/* ---------- Focus states (real ones) ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 3px;
+}
+
+/* ---------- Search ---------- */
+#searchbox input {
+    font-family: var(--font-ui);
+    font-size: 17px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--entry);
+    color: var(--primary);
+    padding: 11px 14px;
+}
+#searchbox input:focus { border-color: var(--accent); outline: none; }
+#searchResults li {
+    font-family: var(--font-ui);
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom-color: var(--border);
+    border-radius: 0;
+}
+#searchResults li:active,
+#searchResults .focus {
+    background: var(--accent-wash);
+    border-color: var(--accent);
+    border-radius: var(--radius);
+    transform: none;
+}
+
+/* ---------- Motion discipline ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ---------- Responsive ---------- */
+@media screen and (max-width: 768px) {
+    :root { --gap: 18px; }
+    .post-content { font-size: 18px; line-height: 1.68; }
+    .post-content h2 { font-size: 25px; }
+    .post-content h3 { font-size: 20px; }
+    .first-entry { padding: 32px 0 26px; }
+    .post-entry .entry-header h2 { font-size: 23px; }
+    .entry-content { font-size: 16.5px; }
+    /* Tables scroll rather than squash on narrow screens. */
+    .post-content table { display: block; overflow-x: auto; white-space: nowrap; }
+}
+
+/* ---------- Print ---------- */
+@media print {
+    .header, .footer, .toc, .post-tags, .paginav, #top-link { display: none !important; }
+    .post-content { font-size: 12pt; color: #000; }
+    body::before { display: none; }
+}
