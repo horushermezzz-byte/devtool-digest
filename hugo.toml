@@ -1,0 +1,86 @@
+baseURL = "https://horushermezzz-byte.github.io/devtool-digest/"
+locale = "en-us"
+title = "DevTool Digest"
+theme = "PaperMod"
+paginate = 10
+
+enableRobotsTXT = true
+enableEmoji = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+[minify]
+  disableXML = true
+
+[params]
+  env = "production"
+  title = "DevTool Digest"
+  description = "Practical, hands-on comparisons and guides for AI coding tools, dev productivity software, and self-hosted alternatives — no fluff, just what works."
+  keywords = ["AI coding tools", "developer productivity", "dev tools comparison"]
+  author = "DevTool Digest"
+  DateFormat = "January 2, 2006"
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = true
+  tocopen = false
+
+  [params.homeInfoParams]
+    Title = "DevTool Digest"
+    Content = "Practical, no-fluff comparisons and guides for AI coding assistants, dev productivity tools, and self-hosted alternatives. We test the tools so you don't have to."
+
+  [params.assets]
+    disableHLJS = false
+    favicon = "/favicon.ico"
+
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/horushermezzz-byte"
+
+  [[params.socialIcons]]
+    name = "rss"
+    url = "/index.xml"
+
+[[menu.main]]
+  identifier = "posts"
+  name = "Articles"
+  url = "/posts/"
+  weight = 10
+
+[[menu.main]]
+  identifier = "about"
+  name = "About"
+  url = "/about/"
+  weight = 20
+
+[[menu.main]]
+  identifier = "search"
+  name = "Search"
+  url = "/search/"
+  weight = 30
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+  [markup.goldmark.renderer]
+    unsafe = true
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
