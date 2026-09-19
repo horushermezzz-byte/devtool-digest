@@ -39,9 +39,13 @@ That ratio — **257x** — is the most important number here for anyone budgeti
 
 Cost therefore scales with the **integral** of context size over the session, not its final value. A loop ending at 83K tokens after 168 calls costs far more than one ending at 83K after 20 calls. Roughly, cost grows with the square of conversation length — which is why "just let it run longer" degrades economically so fast.
 
+{{< chart-integral >}}
+
 This reframes what context engineering is *for*. Trimming context isn't mainly about fitting the window — 83K fits comfortably in 200K. It's about not paying for the same tokens 168 times.
 
 ## 2. 96% of input tokens were cache reads, worth a 6x cost difference
+
+{{< chart-tokenmix >}}
 
 | Token class | Count | Share |
 |---|---:|---:|
@@ -58,6 +62,8 @@ Anthropic prices [cache reads at 0.1x the base input rate and writes at 1.25x](h
 | With prompt caching | **$10.98** |
 | Same tokens, no caching | **$65.92** |
 | Difference | $54.94 saved — **6.0x** |
+
+{{< chart-cost >}}
 
 *(Illustrative: public list rates applied to measured tokens, not an invoice.)*
 
@@ -86,6 +92,8 @@ This is why prompt-level optimization barely moves a real loop. Halve every assi
 
 **9 of 172 tool results (5%) accounted for 50% of all tool output.**
 
+{{< chart-pareto >}}
+
 The top entry deserves the shaming it is about to receive. It was mine:
 
 ```sh
@@ -95,6 +103,8 @@ strings ./some-binary | grep -i "chromium-" | head -5
 `head -5` limits the number of *matching lines*. It does nothing when a single matched line is hundreds of kilobytes of minified JavaScript bundled inside the binary. That one command injected ~12,905 tokens — **15.5% of the entire conversation history** — and because history is re-sent every call, that mistake was re-read on every subsequent request for the rest of the session.
 
 Where budgets actually go, by tool:
+
+{{< chart-toolbudget >}}
 
 | Tool | Calls | Avg chars | Total | Share |
 |---|---:|---:|---:|---:|

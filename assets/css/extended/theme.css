@@ -504,3 +504,110 @@ summary:focus-visible {
     .post-content { font-size: 12pt; color: #000; }
     body::before { display: none; }
 }
+
+/* ==========================================================================
+   Charts — inline SVG figures, theme-aware via CSS custom properties.
+   No raster images: every fill/stroke references a token so light/dark
+   switching is automatic and text stays selectable + searchable.
+   ========================================================================== */
+.chart {
+    margin: 2.4rem 0;
+    padding: 1.1rem 1.2rem 1rem;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+
+.chart-title {
+    font-family: var(--font-display);
+    font-size: 1.04rem;
+    font-weight: 600;
+    line-height: 1.34;
+    color: var(--primary);
+    margin: 0 0 .32rem;
+    letter-spacing: -0.005em;
+}
+
+.chart-sub {
+    font-size: .855rem;
+    line-height: 1.5;
+    color: var(--secondary);
+    margin: 0 0 .95rem;
+}
+
+.chart-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+/* SVG text classes — sized in px because they live in viewBox space */
+.chart-svg .ax {
+    font-family: var(--font-ui);
+    font-size: 11.5px;
+    fill: var(--secondary);
+}
+
+.chart-svg .lbl {
+    font-family: var(--font-ui);
+    font-size: 12.5px;
+    fill: var(--primary);
+}
+
+.chart-svg .lbl-big {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 600;
+    fill: var(--primary);
+}
+
+.chart-svg .lbl-mono {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    fill: var(--primary);
+}
+
+/* Text sitting on top of an accent-filled bar needs a fixed light fill,
+   not a token — the bar is accent-colored in BOTH themes. */
+.chart-svg .bar-in {
+    font-family: var(--font-ui);
+    font-size: 13px;
+    font-weight: 600;
+    fill: #ffffff;
+}
+
+.dark .chart-svg .bar-in { fill: #0d1a19; }
+
+@media (max-width: 640px) {
+    .chart { padding: .85rem .9rem .8rem; }
+    .chart-title { font-size: .97rem; }
+    .chart-sub { font-size: .8rem; }
+
+    /* SVG text is in viewBox units: scaling the SVG down scales the type down
+       with it, so a font-size bump alone cannot rescue legibility. Let the
+       figure scroll horizontally instead — same pattern this theme uses for
+       wide tables — with a floor that keeps labels readable. */
+    .chart-scroll {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .chart-scroll .chart-svg { min-width: 560px; }
+
+    .chart-scroll::after {
+        content: "\2190 scroll \2192";
+        display: block;
+        text-align: right;
+        font-family: var(--font-ui);
+        font-size: .7rem;
+        color: var(--secondary);
+        opacity: .65;
+        padding-top: .25rem;
+    }
+}
+
+/* Flowchart text classes (decision-tree figure) */
+.chart-svg .fc-t { font-family: var(--font-mono); font-size: 12px; fill: var(--primary); }
+.chart-svg .fc-s { font-family: var(--font-ui); font-size: 10.5px; fill: var(--secondary); }
+.chart-svg .fc-l { font-family: var(--font-ui); font-size: 10.5px; fill: var(--secondary); }

@@ -34,6 +34,8 @@ The `-n` flag on that first command matters: without it, `sudo` hangs waiting fo
 
 On this box: no sudo, ARM64, PEP 668 enforced, and — luckily — an npm prefix already pointed at `$HOME/.local`.
 
+{{< chart-decision >}}
+
 ## The wall: PEP 668 with no escape hatch
 
 Python was the first real problem. Since PEP 668, distributions mark system Python as externally managed to stop pip from fighting the OS package manager:

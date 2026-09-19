@@ -1,0 +1,17 @@
+<figure class="chart">
+  <figcaption class="chart-title">96% of what you send is a re-read</figcaption>
+  <p class="chart-sub">Of 21.4M prompt tokens, 336 were new. Everything else was the conversation being replayed to a stateless model.</p>
+  <div class="chart-scroll">
+    <svg viewBox="0 0 680 176" role="img" class="chart-svg"
+         xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <rect x="20" y="54" width="615.42" height="46" fill="var(--accent)" rx="3"/>
+    <rect x="635.42" y="54" width="24.57" height="46" fill="var(--accent)" opacity="0.45"/>
+    <rect x="659.99" y="54" width="1.00" height="46" fill="var(--primary)"/>
+    <text x="327.7" y="83" text-anchor="middle" class="bar-in">96.2% cache reads</text>
+    <text x="20" y="42" class="ax">21,398,623 prompt tokens, by billing class</text>
+    <text x="637.4" y="116" class="ax">cache writes 821,462 (3.84%)</text>
+    <text x="637.4" y="132" class="ax">fresh input 336 tokens (0.0016%) — the only genuinely new bytes</text>
+    <text x="20" y="162" class="lbl">Cache reads bill at 0.1x input rate. Break the prefix and this bar turns 10x more expensive.</text>
+    </svg>
+  </div>
+</figure>

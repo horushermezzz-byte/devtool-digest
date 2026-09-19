@@ -1,0 +1,21 @@
+<figure class="chart">
+  <figcaption class="chart-title">Prompt caching was worth 6x on this session</figcaption>
+  <p class="chart-sub">Cache reads price at 0.1x input; writes at 1.25x. The whole saving depends on never mutating the front of the context.</p>
+  <div class="chart-scroll">
+    <svg viewBox="0 0 680 190" role="img" class="chart-svg"
+         xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <text x="122" y="52" text-anchor="end" class="lbl-mono">with caching</text>
+    <rect x="132" y="34" width="73.3" height="26" fill="var(--accent)" rx="3"/>
+    <rect x="209.3" y="40.5" width="47.9" height="17.5" fill="var(--entry)" opacity="0.93" rx="2"/><text x="214.3" y="52.0" text-anchor="start" class="lbl">$10.98</text>
+
+    <text x="122" y="100" text-anchor="end" class="lbl-mono">no caching</text>
+    <rect x="132" y="82" width="440.0" height="26" fill="var(--secondary)" rx="3" opacity="0.55"/>
+    <text x="581.0" y="100" class="lbl">$65.92</text>
+
+    <line x1="205.3" y1="30" x2="205.3" y2="116" stroke="var(--primary)"
+          stroke-width="1.2" stroke-dasharray="3 3"/>
+    <text x="132" y="144" class="lbl">Same 21.4M tokens, same work — 6.0x the cost.</text>
+    <text x="132" y="164" class="ax">Sonnet-class list rates applied to measured token counts. Illustrative, not an invoice.</text>
+    </svg>
+  </div>
+</figure>
