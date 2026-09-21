@@ -1,0 +1,28 @@
+<figure class="chart">
+  <figcaption class="chart-title">Every build cost splits in two: startup, and work per page</figcaption>
+  <p class="chart-sub">Fitting time = startup + per-page × N separates the two. Astro's per-page cost is 24x Hugo's — that is the number that compounds.</p>
+  <div class="chart-scroll">
+    <svg viewBox="0 0 680 300" role="img" class="chart-svg" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <text x="200" y="34" class="ax" text-anchor="end">fixed startup (ms)</text>
+    <text x="216" y="34" class="ax">marginal cost per page (ms)</text>
+    <text x="200" y="44" text-anchor="end" class="lbl-mono">Hugo</text>
+    <rect x="193.9" y="50" width="12.1" height="22" fill="var(--secondary)" opacity="0.5" rx="3"/>
+    <text x="185.9" y="66" text-anchor="end" class="lbl">45ms</text>
+    <rect x="216" y="50" width="15.8" height="22" fill="var(--accent)" rx="3"/>
+    <text x="239.8" y="66" class="lbl">0.185ms/page</text>
+    <text x="200" y="106" text-anchor="end" class="lbl-mono">Eleventy</text>
+    <rect x="131.8" y="112" width="74.2" height="22" fill="var(--secondary)" opacity="0.5" rx="3"/>
+    <text x="123.8" y="128" text-anchor="end" class="lbl">278ms</text>
+    <rect x="216" y="112" width="35.0" height="22" fill="var(--accent)" rx="3"/>
+    <text x="259.0" y="128" class="lbl">0.409ms/page</text>
+    <text x="200" y="168" text-anchor="end" class="lbl-mono">Astro</text>
+    <rect x="78.9" y="174" width="127.1" height="22" fill="var(--secondary)" opacity="0.5" rx="3"/>
+    <text x="70.9" y="190" text-anchor="end" class="lbl">476ms</text>
+    <rect x="216" y="174" width="380.0" height="22" fill="var(--accent)" rx="3"/>
+    <text x="604.0" y="190" class="lbl">4.441ms/page</text>
+    <line x1="206" y1="40" x2="206" y2="228" stroke="var(--primary)" stroke-width="1.2"/>
+    <text x="216" y="258" class="lbl">Startup is a one-time tax. Per-page cost is what decides whether 10,000 posts is viable.</text>
+    <text x="216" y="278" class="ax">Least-squares fit over N = 100 / 300 / 1,000 / 2,500 pages. R² ≥ 0.988 for all three.</text>
+    </svg>
+  </div>
+</figure>
