@@ -181,6 +181,9 @@ Verified properties on this box afterwards — a 6-core aarch64 VM, 3.3 GB RAM, 
 The daemon runs as your user. That's the whole point of rootless — a container escape lands on an
 unprivileged account, not root.
 
+With it working, I used this box to [measure what self-hosted tools actually cost to run](/devtool-digest/posts/self-hosted-saas-alternatives/)
+— idle RAM, image sizes, and the widely-repeated Plausible RAM requirement that turned out to be wrong.
+
 ## If you use the .deb, none of this happens
 
 Worth knowing before you follow a guide: `docker-ce-rootless-extras` installed via apt **ships the
@@ -228,7 +231,8 @@ Linux the second one usually has a better answer source than the first.
 
 When a container runtime, sandbox, or browser fails with a permission error that makes no sense
 given your file permissions, check `kern.log` for AppArmor or SELinux denials **before** you
-start changing sysctls. The denial names the profile, the operation, and the target — which is
+start changing sysctls. (For the wider problem of working on a box you don't own, see
+[building a dev toolchain without root](/devtool-digest/posts/dev-toolchain-without-root/).) The denial names the profile, the operation, and the target — which is
 usually enough to write a fix scoped to one binary rather than one that disables a subsystem.
 
 *Hit this on a different distro or with a different runtime?

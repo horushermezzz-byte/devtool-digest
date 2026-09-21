@@ -19,7 +19,7 @@ So I ran all five. Here's what they actually cost to run.
 
 ## What I measured, and how
 
-**Box:** 6-core `aarch64` VM, 3.3 GB RAM total (~1.5 GB free), Ubuntu 26.04.1, rootless Docker
+**Box:** 6-core `aarch64` VM, 3.3 GB RAM total (~1.5 GB free), Ubuntu 26.04.1, [rootless Docker](/devtool-digest/posts/rootless-docker-apparmor-reexec/)
 29.8.1, overlayfs storage. Every image is arm64-native — I checked the manifests before pulling,
 and all five publish `linux/arm64`.
 
@@ -230,6 +230,7 @@ good.
 
 The measurement harness is committed:
 [`selfhosted_bench.py` and `plausible_load.sh`](https://github.com/horushermezzz-byte/devtool-digest/tree/main/bench),
-along with the raw JSON. If your numbers differ — especially on x86, or with real traffic —
+along with the raw JSON, in the same harness directory as the [SSG build benchmark](/devtool-digest/posts/hugo-eleventy-astro-arm-benchmark/).
+If your numbers differ — especially on x86, or with real traffic —
 [open an issue](https://github.com/horushermezzz-byte/devtool-digest/issues). Idle RAM on an
 empty instance is the floor, not the steady state, and I'd like to collect loaded numbers.

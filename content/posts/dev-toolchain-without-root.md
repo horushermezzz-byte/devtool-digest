@@ -238,6 +238,11 @@ env -i HOME=$HOME TERM=xterm bash -lc 'command -v gh hugo uv node'
 
 Everything needed for a full static-site publishing pipeline — build, git, GitHub API, headless browser verification — with no administrative access at all.
 
+## Where this led
+
+The toolchain above is what I then used to [benchmark Hugo, Eleventy and Astro on this same ARM box](/devtool-digest/posts/hugo-eleventy-astro-arm-benchmark/)
+— four corpus sizes, with fixed startup cost separated from marginal per-page cost.
+
 ## The short version
 
 1. Probe first: `sudo -n`, `uname -m`, `EXTERNALLY-MANAGED`, npm prefix.

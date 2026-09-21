@@ -155,6 +155,6 @@ Every number here is therefore a snapshot taken at one instant, not a final tota
 4. 5% of tool calls made 50% of output; one bad command cost 15.5% of the window.
 5. Truncate at the tool, write to disk, restart rather than compact.
 
-None of this needed special access — it's one SQLite query against a state database, and any agent framework worth using keeps equivalent telemetry. If you operate an agent loop and have never looked at the numbers, you're probably optimizing the 2.7% and ignoring the 38%.
+None of this needed special access — it's one SQLite query against a state database, and any agent framework worth using keeps equivalent telemetry. The same instinct applies to build tooling: [benchmarking three static site generators](/devtool-digest/posts/hugo-eleventy-astro-arm-benchmark/) turned up a 24x per-page cost difference that a single-size test would have hidden. If you operate an agent loop and have never looked at the numbers, you're probably optimizing the 2.7% and ignoring the 38%.
 
 *Running agents in production with different distributions? [Open an issue](https://github.com/horushermezzz-byte/devtool-digest/issues) — I'd like to compare across harnesses.*
