@@ -1,0 +1,58 @@
+{{- /*
+  aff — render a commercial link that is honest by construction.
+
+    {{< aff cloudways >}}Cloudways{{< /aff >}}
+    {{< aff cloudways "Cloudways" >}}
+    {{< aff cloudways text="Cloudways" to="/en/pricing" >}}
+
+  Guarantees (these are the point of this shortcode):
+    * Unknown partner key  -> BUILD FAILS. No silent dead links.
+    * Empty affiliate id   -> renders a PLAIN link. We never mark a link
+                              `sponsored` when it earns nothing, and we never
+                              show a disclosure for a link that isn't paid.
+    * Non-empty id         -> rel="sponsored nofollow noopener", and a
+                              disclosure is emitted automatically the FIRST
+                              time a paid link appears on the page.
+  The disclosure cannot be forgotten because the author never writes it.
+*/ -}}
+
+{{- $key := .Get 0 | default (.Get "partner") -}}
+{{- with $key -}}{{- else -}}
+  {{- errorf "aff: missing partner key in %s" $.Page.File.Path -}}
+{{- end -}}
+
+{{- $p := index hugo.Data.partners $key -}}
+{{- if not $p -}}
+  {{- $known := slice -}}
+  {{- range $k, $_ := hugo.Data.partners -}}{{- $known = $known | append $k -}}{{- end -}}
+  {{- errorf "aff: unknown partner %q in %s (known: %s)" $key $.Page.File.Path (delimit (sort $known) ", ") -}}
+{{- end -}}
+
+{{- $text := .Get "text" | default (.Get 1) -}}
+{{- if and (not $text) .Inner -}}{{- $text = trim .Inner " \n" -}}{{- end -}}
+{{- $text = $text | default $p.name -}}
+
+{{- $paid := ne (trim ($p.id | default "") " ") "" -}}
+{{- $href := $p.url -}}
+{{- if $paid -}}
+  {{- $href = replace $p.link_template "{{ID}}" $p.id -}}
+{{- end -}}
+{{- with .Get "to" -}}
+  {{- if not $paid -}}{{- $href = printf "%s%s" (strings.TrimSuffix "/" $p.url) . -}}{{- end -}}
+{{- end -}}
+
+{{- /* First paid link on this page pulls in the disclosure, once. */ -}}
+{{- if and $paid (not ($.Page.Store.Get "affDisclosed")) -}}
+  {{- $.Page.Store.Set "affDisclosed" true -}}
+<div class="aff-disclosure" role="note">
+  <strong>Heads up:</strong> the {{ $p.name }} link below is an affiliate link — if you sign up
+  through it we get {{ $p.incentive }}, at no extra cost to you. It does not change what we
+  recommend; we run the tools first and say so when one isn't worth it.
+  <a href="{{ "disclosure/" | relURL }}">How we handle this</a>.
+</div>
+{{- end -}}
+
+<a class="aff-link{{ if $paid }} is-paid{{ end }}" href="{{ $href }}"
+   {{- if $paid }} rel="sponsored nofollow noopener" target="_blank"{{ else }} rel="noopener"{{ end }}
+   {{- if $paid }} data-aff="{{ $key }}"{{ end }}>{{ $text }}</a>
+{{- if $paid }}<span class="aff-mark" aria-label="affiliate link" title="affiliate link">&#8202;&#182;</span>{{ end -}}

@@ -1,0 +1,45 @@
+# ---------------------------------------------------------------------------
+# Partner registry — single source of truth for every commercial link.
+#
+# HOW TO ACTIVATE A PARTNER (after you are accepted into the program):
+#   1. Log into the affiliate dashboard and COPY YOUR REAL TRACKING URL.
+#   2. Paste it into `link_template`, replacing the whole value.
+#   3. Put your ID in `id`.  The moment `id` is non-empty the site starts
+#      emitting affiliate links + disclosure. Until then every link renders
+#      as a PLAIN link and nothing claims to be sponsored.
+#
+# Do NOT guess the URL format. Each network differs (?id=, /?ref=, sub-domain
+# redirectors, campaign slugs). Copy it from the dashboard verbatim.
+# ---------------------------------------------------------------------------
+
+[cloudways]
+  name          = "Cloudways"
+  category      = "Managed hosting"
+  url           = "https://www.cloudways.com/"
+  # {{ID}} is substituted with `id`. VERIFY THIS SHAPE IN THE DASHBOARD.
+  link_template = "https://www.cloudways.com/en/?id={{ID}}"
+  id            = ""
+  program       = "Hybrid: $30 flat + 7% lifetime recurring, or slab model up to $125/sale"
+  signup        = "https://www.cloudways.com/en/web-hosting-affiliate-program.php"
+  # Shown in the disclosure line so the reader knows the exact incentive.
+  incentive     = "a flat fee plus a recurring share of what you pay, for as long as you stay"
+
+[kinsta]
+  name          = "Kinsta"
+  category      = "Managed hosting"
+  url           = "https://kinsta.com/"
+  link_template = "https://kinsta.com/?kaid={{ID}}"
+  id            = ""
+  program       = "$50-$500 one-time by plan + 10% lifetime recurring"
+  signup        = "https://kinsta.com/affiliate-academy/"
+  incentive     = "a one-time fee plus 10% of your subscription for as long as you stay"
+
+[digitalocean]
+  name          = "DigitalOcean"
+  category      = "Cloud VPS"
+  url           = "https://www.digitalocean.com/"
+  link_template = "https://www.digitalocean.com/?refcode={{ID}}"
+  id            = ""
+  program       = "$25-$100 bounty per qualified signup (not recurring)"
+  signup        = "https://www.digitalocean.com/partners/affiliate-program"
+  incentive     = "a one-time bounty if you sign up and spend"

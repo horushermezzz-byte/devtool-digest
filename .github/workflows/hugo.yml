@@ -36,6 +36,8 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: Audit commercial links
+        run: python3 scripts/audit-links.py
       - name: Build with Hugo
         env:
           HUGO_ENVIRONMENT: production

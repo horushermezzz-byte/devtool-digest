@@ -67,10 +67,16 @@ buildExpired = false
   weight = 20
 
 [[menu.main]]
+  identifier = "disclosure"
+  name = "Disclosure"
+  url = "/disclosure/"
+  weight = 30
+
+[[menu.main]]
   identifier = "search"
   name = "Search"
   url = "/search/"
-  weight = 30
+  weight = 40
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]

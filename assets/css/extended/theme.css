@@ -611,3 +611,54 @@ summary:focus-visible {
 .chart-svg .fc-t { font-family: var(--font-mono); font-size: 12px; fill: var(--primary); }
 .chart-svg .fc-s { font-family: var(--font-ui); font-size: 10.5px; fill: var(--secondary); }
 .chart-svg .fc-l { font-family: var(--font-ui); font-size: 10.5px; fill: var(--secondary); }
+
+/* ==========================================================================
+   Affiliate layer — visible honesty. The disclosure is styled to be READ,
+   not to be skipped: it sits inline in the prose flow, not in a footer.
+   ========================================================================== */
+
+.aff-disclosure {
+    margin: 2rem 0 1.5rem;
+    padding: .9rem 1.1rem;
+    background: var(--accent-wash);
+    border-inline-start: 3px solid var(--accent);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-family: var(--font-ui);
+    font-size: .93rem;
+    line-height: 1.6;
+    color: var(--content);
+}
+
+.aff-disclosure strong { color: var(--primary); }
+
+.aff-disclosure a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.aff-disclosure a:hover { color: var(--accent-hover); }
+
+/* Paid links stay visually identical to normal links — no colour trickery to
+   make them more clickable. The ¶ mark is the only difference. */
+.aff-mark {
+    font-size: .72em;
+    color: var(--secondary);
+    vertical-align: super;
+    line-height: 0;
+    cursor: help;
+    user-select: none;
+}
+
+.partner-table { width: 100%; }
+
+.partner-empty {
+    padding: .9rem 1.1rem;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    color: var(--secondary);
+    font-family: var(--font-ui);
+    font-size: .93rem;
+}
+
+@media print { .aff-disclosure { border-inline-start-color: #999; background: none; } }

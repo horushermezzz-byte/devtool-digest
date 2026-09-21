@@ -1,0 +1,19 @@
+{{- /* Renders the live partner registry. Enrolled = has an id. */ -}}
+{{- $rows := slice -}}
+{{- range $k, $p := hugo.Data.partners -}}
+  {{- if ne (trim ($p.id | default "") " ") "" -}}{{- $rows = $rows | append $p -}}{{- end -}}
+{{- end -}}
+{{- if $rows -}}
+<table class="partner-table">
+  <thead><tr><th>Partner</th><th>What they do</th><th>What we earn</th></tr></thead>
+  <tbody>
+  {{- range sort $rows "name" }}
+    <tr><td><strong>{{ .name }}</strong></td><td>{{ .category }}</td><td>{{ .program }}</td></tr>
+  {{- end }}
+  </tbody>
+</table>
+{{- else -}}
+<p class="partner-empty"><em>None yet.</em> We aren't enrolled in any affiliate program at the
+moment, so nothing on this site currently earns a commission. When that changes, the partner
+will be listed here before any paid link goes live.</p>
+{{- end -}}
