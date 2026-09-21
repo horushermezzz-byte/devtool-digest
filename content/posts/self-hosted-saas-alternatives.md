@@ -1,7 +1,7 @@
 ---
 title: "5 Self-Hosted Tools Worth Replacing Paid SaaS With — And When They Aren't"
 date: 2026-09-19T13:00:00+02:00
-lastmod: 2026-09-21T09:15:00+02:00
+lastmod: 2026-09-21T09:50:00+02:00
 draft: false
 tags: ["self-hosted", "open-source", "productivity", "docker"]
 summary: "Five open-source tools that replace recurring SaaS bills — now with measured idle RAM, image sizes, and startup times from actually running every one of them on a 3.3 GB ARM box. Includes the tool that needs 108x more memory than the lightest, and the widely-repeated RAM requirement that turned out to be wrong."
@@ -28,13 +28,19 @@ measurements don't contaminate each other. "Ready" means *the tool's own HTTP en
 polled once per second — not when `docker run` returned, which tells you nothing about whether
 the app is usable. Idle RAM is `docker stats` after a 12-second settle.
 
+**Ready times exclude image pull**, which is measured separately — they're cold *container*
+starts with the image already local. Pulling matters on first deploy and varies with your
+connection, so it isn't comparable between tools: n8n's 1.7 GB image took 271 seconds to pull
+here, and my first Plausible run took 280 seconds end-to-end almost entirely because of pulls.
+Budget for that once, then never again.
+
 | Tool | Image size | Time to ready | **Idle RAM** |
 |---|---:|---:|---:|
 | Vaultwarden | 403 MB | 1.0s | **7 MB** |
 | Uptime Kuma | 678 MB | 2.0s | **112 MB** |
 | Shlink | 396 MB | 1.1s | **296.5 MB** |
 | n8n | 1,721 MB | 3.0s | **775 MB** |
-| Plausible (3 containers) | ~1,400 MB | 4.0s | **769 MB** |
+| Plausible (3 containers) | 1,269 MB | 4.0s | **761 MB** |
 
 The headline: **n8n idles at 108x Vaultwarden's memory.** These tools get discussed as if they're
 interchangeable "one container each" propositions. They are not remotely in the same class.
