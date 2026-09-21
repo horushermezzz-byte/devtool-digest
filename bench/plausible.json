@@ -1,0 +1,22 @@
+{
+  "free_before_mb": 1662,
+  "events": [
+    "postgres start rc=0 Unable to find image 'postgres:16-alpine' locally\n16-alpine: Pulling from library/postgres\n42522e794927: Pulling fs laye",
+    "clickhouse start rc=0 Unable to find image 'clickhouse/clickhouse-server:24-alpine' locally\n24-alpine: Pulling from clickhouse/clickhouse-serv",
+    "after DBs: MemAvailable 1310 MB",
+    "pg    state: running|false|0|0",
+    "ch    state: running|false|0|0",
+    "plausible start rc=0 Unable to find image 'ghcr.io/plausible/community-edition:v3' locally\nv3: Pulling from plausible/community-edition\n4ec78b4b80a9: Pulling fs layer\n6b59a28fa201: ",
+    "pl_db  final: running|false|0|0",
+    "pl_ch  final: running|false|0|0",
+    "pl_app final: running|false|0|0",
+    "PLAUSIBLE READY in 280s",
+    "MemAvailable at end: 998 MB"
+  ],
+  "ready_s": 280.3,
+  "free_low_mb": 1010,
+  "pl_db": "running|false|0|0",
+  "pl_ch": "running|false|0|0",
+  "pl_app": "running|false|0|0",
+  "oom_log": ""
+}

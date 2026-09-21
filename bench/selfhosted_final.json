@@ -1,0 +1,38 @@
+{
+  "tools": [
+    {
+      "name": "Vaultwarden",
+      "image_mb": 403.3,
+      "pull_s": 1.4,
+      "ready_s": 1.0,
+      "idle_mb": 7.2
+    },
+    {
+      "name": "Uptime Kuma",
+      "image_mb": 678.3,
+      "pull_s": 142.2,
+      "ready_s": 2.0,
+      "idle_mb": 112.2
+    },
+    {
+      "name": "Shlink",
+      "image_mb": 396.3,
+      "pull_s": 96.9,
+      "ready_s": 1.1,
+      "idle_mb": 296.5
+    },
+    {
+      "name": "n8n",
+      "image_mb": 1720.8,
+      "pull_s": 271.0,
+      "ready_s": 3.0,
+      "idle_mb": 774.8
+    }
+  ],
+  "plausible_stack_mb": {
+    "pl_db": 65.86,
+    "pl_ch": 285.8,
+    "pl_app": 417.1
+  },
+  "plausible_total_mb": 768.8
+}
