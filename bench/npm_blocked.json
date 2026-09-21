@@ -1,0 +1,98 @@
+[
+  {
+    "package": "sharp",
+    "installed": true,
+    "works": true,
+    "error": "",
+    "n_built": 0,
+    "n_prebuilt": 1,
+    "prebuilt_example": "@img/sharp-linux-arm64/lib/sharp-linux-arm64-0.35.4.node",
+    "optional_deps": [
+      "@img/sharp-darwin-arm64",
+      "@img/sharp-darwin-x64",
+      "@img/sharp-freebsd-wasm32",
+      "@img/sharp-libvips-darwin-arm64",
+      "@img/sharp-libvips-darwin-x64",
+      "@img/sharp-libvips-linux-arm"
+    ]
+  },
+  {
+    "package": "better-sqlite3",
+    "installed": true,
+    "works": true,
+    "error": "",
+    "n_built": 0,
+    "n_prebuilt": 8,
+    "prebuilt_example": "better-sqlite3/prebuilds/linux-x64.node",
+    "optional_deps": []
+  },
+  {
+    "package": "esbuild",
+    "installed": true,
+    "works": true,
+    "error": "",
+    "n_built": 0,
+    "n_prebuilt": 0,
+    "prebuilt_example": "",
+    "optional_deps": [
+      "@esbuild/aix-ppc64",
+      "@esbuild/android-arm",
+      "@esbuild/android-arm64",
+      "@esbuild/android-x64",
+      "@esbuild/darwin-arm64",
+      "@esbuild/darwin-x64"
+    ]
+  },
+  {
+    "package": "ws",
+    "installed": true,
+    "works": true,
+    "error": "",
+    "n_built": 0,
+    "n_prebuilt": 0,
+    "prebuilt_example": "",
+    "optional_deps": []
+  },
+  {
+    "package": "canvas",
+    "installed": true,
+    "works": false,
+    "error": "node:internal/modules/cjs/loader:1595",
+    "n_built": 0,
+    "n_prebuilt": 0,
+    "prebuilt_example": "",
+    "optional_deps": []
+  },
+  {
+    "package": "sqlite3",
+    "installed": true,
+    "works": false,
+    "error": "/home/horus/.hermes/profiles/horus/cache/scratch/blk_gk7z92vo/node_modules/bindings/bindings.js:135",
+    "n_built": 0,
+    "n_prebuilt": 0,
+    "prebuilt_example": "",
+    "optional_deps": [
+      "node-gyp"
+    ]
+  },
+  {
+    "package": "node-sass",
+    "installed": true,
+    "works": false,
+    "error": "/home/horus/.hermes/profiles/horus/cache/scratch/blk_alp1qmag/node_modules/node-sass/lib/binding.js:13",
+    "n_built": 0,
+    "n_prebuilt": 0,
+    "prebuilt_example": "",
+    "optional_deps": []
+  },
+  {
+    "package": "bcrypt",
+    "installed": true,
+    "works": true,
+    "error": "",
+    "n_built": 0,
+    "n_prebuilt": 10,
+    "prebuilt_example": "bcrypt/prebuilds/linux-arm/bcrypt.musl.node",
+    "optional_deps": []
+  }
+]

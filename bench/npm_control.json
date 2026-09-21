@@ -1,0 +1,112 @@
+{
+  "probe": {
+    "default": {
+      "script_executed": true,
+      "warned": true,
+      "rc": 0
+    },
+    "ignore_scripts": {
+      "script_executed": false,
+      "warned": false,
+      "rc": 0
+    }
+  },
+  "packages": {
+    "canvas": {
+      "default": {
+        "installed": true,
+        "works": true,
+        "warned": true,
+        "built_from_source": [
+          "canvas/build/Release/canvas.node"
+        ],
+        "prebuilt": [],
+        "n_built": 1,
+        "n_prebuilt": 0
+      },
+      "ignore_scripts": {
+        "installed": true,
+        "works": false,
+        "warned": false,
+        "built_from_source": [],
+        "prebuilt": [],
+        "n_built": 0,
+        "n_prebuilt": 0
+      }
+    },
+    "sqlite3": {
+      "default": {
+        "installed": true,
+        "works": true,
+        "warned": true,
+        "built_from_source": [
+          "sqlite3/build/Release/node_sqlite3.node"
+        ],
+        "prebuilt": [],
+        "n_built": 1,
+        "n_prebuilt": 0
+      },
+      "ignore_scripts": {
+        "installed": true,
+        "works": false,
+        "warned": false,
+        "built_from_source": [],
+        "prebuilt": [],
+        "n_built": 0,
+        "n_prebuilt": 0
+      }
+    },
+    "node-sass": {
+      "default": {
+        "installed": true,
+        "works": true,
+        "warned": true,
+        "built_from_source": [
+          "node-sass/build/Release/obj.target/binding.node"
+        ],
+        "prebuilt": [
+          "node-sass/vendor/linux-arm64-147/binding.node"
+        ],
+        "n_built": 1,
+        "n_prebuilt": 1
+      },
+      "ignore_scripts": {
+        "installed": true,
+        "works": false,
+        "warned": false,
+        "built_from_source": [],
+        "prebuilt": [],
+        "n_built": 0,
+        "n_prebuilt": 0
+      }
+    },
+    "bcrypt": {
+      "default": {
+        "installed": true,
+        "works": true,
+        "warned": true,
+        "built_from_source": [],
+        "prebuilt": [
+          "bcrypt/prebuilds/linux-arm/bcrypt.musl.node",
+          "bcrypt/prebuilds/linux-arm/bcrypt.glibc.node",
+          "bcrypt/prebuilds/linux-x64/bcrypt.musl.node"
+        ],
+        "n_built": 0,
+        "n_prebuilt": 10
+      },
+      "ignore_scripts": {
+        "installed": true,
+        "works": true,
+        "warned": false,
+        "built_from_source": [],
+        "prebuilt": [
+          "bcrypt/prebuilds/linux-arm/bcrypt.musl.node",
+          "bcrypt/prebuilds/linux-arm/bcrypt.glibc.node",
+          "bcrypt/prebuilds/linux-x64/bcrypt.musl.node"
+        ],
+        "n_built": 0,
+        "n_prebuilt": 10
+      }
+    }
+  }
+}
